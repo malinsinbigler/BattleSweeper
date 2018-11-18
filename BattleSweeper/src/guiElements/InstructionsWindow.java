@@ -90,7 +90,14 @@ public class InstructionsWindow {
         VBox vb = new VBox();
         vb.getChildren().addAll(content);
         vb.setAlignment(Pos.CENTER);
-        vb.setPadding(new Insets(0, 0, 20, 1));
+
+        //Different padding on elements due to a rendering bug on Mac vs Windows
+        if (System.getProperty("os.name").toLowerCase().indexOf("win") >= 0) {
+            vb.setPadding(new Insets(0, 0, 20, 2));
+        } else {
+            vb.setPadding(new Insets(0, 0, 20, 10));
+        }
+
         mainPane.setTop(vb);
 
         final Button okButton = new Button("Ok");

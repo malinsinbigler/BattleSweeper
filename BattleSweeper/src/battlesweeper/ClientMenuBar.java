@@ -37,6 +37,26 @@ public class ClientMenuBar {
         // --- Menu Actions
         Menu menuActions = new Menu("Actions");
         
+        //Difficulty menu
+        Menu menuChangeDifficulty = new Menu("Change Difficulty");
+        
+        MenuItem subMenuEasy = new MenuItem("Easy");
+        subMenuEasy.setOnAction(e -> {
+            BattleSweeper.changeDifficulty("easy");
+        });
+        
+        MenuItem subMenuMedium = new MenuItem("Medium");
+        subMenuMedium.setOnAction(e -> {
+            BattleSweeper.changeDifficulty("medium");
+        });
+        
+        MenuItem subMenuHard = new MenuItem("Hard");
+        subMenuHard.setOnAction(e -> {
+            BattleSweeper.changeDifficulty("hard");
+        });
+        
+        menuChangeDifficulty.getItems().addAll(subMenuEasy, subMenuMedium, subMenuHard);
+        
         MenuItem menuInstructions = new MenuItem("Instructions");
         menuInstructions.setOnAction(e -> {
             InstructionsWindow instructions = new InstructionsWindow();
@@ -49,7 +69,7 @@ public class ClientMenuBar {
         });
         
         menuActions.getItems()
-                .addAll(menuInstructions, menuExit);
+                .addAll(menuChangeDifficulty, menuInstructions, menuExit);
 
         //Add all main selectors to the menu bar
         menuBar.getMenus()

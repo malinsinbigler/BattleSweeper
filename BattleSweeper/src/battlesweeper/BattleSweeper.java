@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 public class BattleSweeper extends Application {
 
     public Stage window;
+    private static GameLogic game;
 
     @Override
     public void start(Stage primaryStage) {
@@ -32,7 +33,7 @@ public class BattleSweeper extends Application {
         }
 
         //Set up game board
-        GameLogic game = new GameLogic(userDifficultySelection);
+        game = new GameLogic(userDifficultySelection);
 
         //Finalize main window
         BorderPane brdrLayoutMain = new BorderPane();
@@ -48,6 +49,10 @@ public class BattleSweeper extends Application {
         window.setTitle("BattleSweeper");
         window.setScene(scene);
         window.show();
+    }
+    
+    public static void changeDifficulty(String newDifficulty){
+        game.setDifficulty(newDifficulty);
     }
 
     /**

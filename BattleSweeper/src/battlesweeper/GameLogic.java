@@ -57,19 +57,6 @@ class GameLogic {
         BOARD_SIZE = 8;
         MAX_NUM_OF_SHIPS = 10;
 
-        //Alter game settings based on difficulty
-        switch (difficulty) {
-            case "easy":
-                max_num_of_misses = 40;
-                break;
-            case "medium":
-                max_num_of_misses = 30;
-                break;
-            case "hard":
-                max_num_of_misses = 20;
-                break;
-        }
-
         //Load needed resource files
         try {
             arrowImageCollection = new HashMap<>();
@@ -84,8 +71,8 @@ class GameLogic {
             Logger.getLogger(GameLogic.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        //initialize the game
-        init();
+        //Set the difficulty and start the game
+        setDifficulty(difficulty);
     }
 
     private void init() {
@@ -300,6 +287,28 @@ class GameLogic {
     //Reset the game to starting settings
     private void reset() {
         init();
+    }
+    
+    /**
+     * 
+     * Sets the difficulty of the game and resets
+     * 
+     * @param newDifficulty String - easy, medium, or hard
+     */
+    public void setDifficulty(String newDifficulty){
+        switch (newDifficulty) {
+            case "easy":
+                max_num_of_misses = 40;
+                break;
+            case "medium":
+                max_num_of_misses = 30;
+                break;
+            case "hard":
+                max_num_of_misses = 20;
+                break;
+        }
+        
+        reset();
     }
 
     /**
